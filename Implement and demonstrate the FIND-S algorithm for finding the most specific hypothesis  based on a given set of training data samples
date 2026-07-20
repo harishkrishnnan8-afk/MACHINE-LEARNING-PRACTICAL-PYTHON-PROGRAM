@@ -1,0 +1,38 @@
+def find_s(data):
+    hypothesis = None
+    for row in data:
+        if row[-1] == "Yes":  # Last column is the target label
+            hypothesis = list(row[:-1])
+            break
+            
+    if hypothesis is None:
+        return "No positive examples in dataset."
+
+    print(f"Initial Hypothesis (h0): {hypothesis}\n")
+
+    for i, row in enumerate(data):
+        features = row[:-1]
+        target = row[-1]
+        
+        if target == "Yes":
+            for j in range(len(hypothesis)):
+                # If the attribute differs from the hypothesis, generalize it with '?'
+                if hypothesis[j] != features[j]:
+                    hypothesis[j] = '?'
+                    
+        print(f"Instance {i+1} ({target}): {hypothesis}")
+        
+    return hypothesis
+
+dataset = [
+    ['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same', 'Yes'],
+    ['Sunny', 'Warm', 'High', 'Strong', 'Warm', 'Same', 'Yes'],
+    ['Rainy', 'Cold', 'High', 'Strong', 'Warm', 'Change', 'No'],
+    ['Sunny', 'Warm', 'High', 'Strong', 'Cool', 'Change', 'Yes']
+]
+
+print("--- FIND-S Algorithm Steps ---")
+final_h = find_s(dataset)
+
+print("\n--- Final Result ---")
+print(f"Most Specific Hypothesis: {final_h}")
