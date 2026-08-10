@@ -3,8 +3,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
-
-# Sample Dataset
 data = {
     "Income":[25000,50000,45000,60000,35000,80000,70000,30000],
     "Age":[22,35,30,45,28,50,40,24],
